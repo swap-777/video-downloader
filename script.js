@@ -1,7 +1,7 @@
 async function processDownload(format) {
     const inputElement = document.getElementById('mediaUrl');
     const statusElement = document.getElementById('statusMessage');
-    const url = inputElement.value.trim();
+    const API_URL = "https://canpolat-media-api.hf.space/download";
 
     if (!url) {
         statusElement.style.color = "#ff4c4c"; 
