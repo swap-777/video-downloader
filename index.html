@@ -3,211 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWAPINCC | Ultimate Video Downloader</title>
-    <style>
-        :root {
-            --neon-green: #00ff88;
-            --neon-blue: #00f0ff;
-            --bg-dark: #080810;
-            --card-bg: #111122;
-            --text-main: #ffffff;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .wrapper {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 240, 255, 0.05);
-            width: 100%;
-            max-width: 550px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 0 0 5px 0;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            color: #8a8ab0;
-            font-size: 0.95rem;
-            margin-bottom: 35px;
-            font-weight: 400;
-        }
-
-        /* Platform loqoları və düzülüş ardıcıllığı */
-        .platforms {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 35px;
-            opacity: 0.8;
-        }
-
-        .platform-badge {
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .insta { color: #e1306c; }
-        .tiktok { color: #ff0050; }
-        .yt { color: #ff0000; }
-        .x-plat { color: #ffffff; }
-
-        .input-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 18px 25px;
-            border-radius: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            box-sizing: border-box;
-            outline: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
-
-        button {
-            width: 100%;
-            padding: 18px;
-            border-radius: 14px;
-            border: none;
-            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
-            color: #000;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
-            color: #fff;
-        }
-
-        /* Yüklənmə animasiyası */
-        .loader-container {
-            display: none;
-            margin-top: 25px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--neon-green);
-            border-radius: 50%;
-            margin: 0 auto 15px auto;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .status-text {
-            color: var(--neon-green);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 35px;
-            font-size: 0.8rem;
-            color: #6a6a8a;
-        }
-    </style>
+    <title>SWAP INC | Premium Downloader</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="wrapper">
-        <h1>SWAPINCC</h1>
-        <div class="subtitle">High-Quality Video Downloader • No Watermark</div>
+    <main class="downloader-box">
+        <h1 class="brand-title">MEDIA DOWNLOADER</h1>
+        <p class="subtitle">Extract high-quality videos with zero watermark.</p>
         
-        <!-- Sənin istədiyin ardıcıllıqla platformalar -->
-        <div class="platforms">
-            <span class="platform-badge insta">Instagram</span>
-            <span class="platform-badge tiktok">TikTok</span>
-            <span class="platform-badge yt">YouTube</span>
-            <span class="platform-badge x-plat">X / Twitter</span>
-        </div>
-
-        <div class="input-box">
-            <input type="text" id="videoUrl" placeholder="Paste your video link here...">
+        <div class="input-wrapper">
+            <input type="url" id="mediaUrl" placeholder="Paste link (IG, TikTok, X, YT)..." autocomplete="off" required>
         </div>
         
-        <button onclick="startDownload()">DOWNLOAD NOW</button>
-        
-        <!-- Avtomatik yüklənmə prosesi üçün vizual hissə -->
-        <div id="loader" class="loader-container">
-            <div class="spinner"></div>
-            <div id="statusLabel" class="status-text">Fetching high-quality MP4...</div>
+        <div class="action-buttons">
+            <button class="btn primary-btn" onclick="processDownload('mp4')">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Download MP4
+            </button>
+            <button class="btn secondary-btn" onclick="processDownload('mp3')">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                Audio MP3
+            </button>
         </div>
 
-        <div class="badges">
-            <span>⚡ Ultra Fast</span>
-            <span>🔒 Secure</span>
-            <span>💎 Best Quality</span>
-        </div>
-    </div>
+        <div id="statusMessage" class="status-message"></div>
+    </main>
 
-    <script>
-        function startDownload() {
-            const url = document.getElementById('videoUrl').value;
-            const loader = document.getElementById('loader');
-            const statusLabel = document.getElementById('statusLabel');
-            
-            if(!url) {
-                alert("Please paste a valid video link!");
-                return;
-            }
+    <footer>
+        CREATED BY SWAP INC
+    </footer>
 
-            // Düyməyə basanda hər şey avtomatik görünür
-            loader.style.display = 'block';
-            statusLabel.innerText = "Extracting video without watermark...";
-            
-            // Bura bir neçə saniyədən sonra backenddən gələn cavabı bağlayacağıq
-            console.log("Processing URL: " + url);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
