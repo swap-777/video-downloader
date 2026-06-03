@@ -4,36 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWAP INC | Premium Downloader</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS birbaşa buradadır */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .downloader-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px); padding: 50px 40px; border-radius: 20px; width: 100%; max-width: 500px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .brand-title { font-size: 2rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 8px; background: linear-gradient(to right, #ffffff, #888888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: #888; font-size: 0.95rem; margin-bottom: 35px; }
+        input { width: 100%; padding: 18px 20px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; border-radius: 12px; font-size: 1rem; outline: none; margin-bottom: 25px; transition: 0.3s; }
+        input:focus { border-color: #fff; }
+        .action-buttons { display: flex; gap: 15px; }
+        .btn { flex: 1; padding: 16px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: none; }
+        .primary-btn { background-color: #ffffff; color: #000000; }
+        .secondary-btn { background-color: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .status-message { margin-top: 25px; font-size: 0.9rem; color: #aaa; min-height: 20px; }
+        footer { margin-top: 40px; font-size: 0.75rem; color: #555; letter-spacing: 3px; }
+        @media (max-width: 450px) { .action-buttons { flex-direction: column; } }
+    </style>
 </head>
 <body>
 
     <main class="downloader-box">
         <h1 class="brand-title">MEDIA DOWNLOADER</h1>
         <p class="subtitle">Extract high-quality videos with zero watermark.</p>
-        
-        <div class="input-wrapper">
-            <input type="url" id="mediaUrl" placeholder="Paste link (IG, TikTok, X, YT)..." autocomplete="off" required>
-        </div>
-        
+        <input type="url" id="mediaUrl" placeholder="Paste link (IG, TikTok, X, YT)..." autocomplete="off">
         <div class="action-buttons">
-            <button class="btn primary-btn" onclick="processDownload('mp4')">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                Download MP4
-            </button>
-            <button class="btn secondary-btn" onclick="processDownload('mp3')">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-                Audio MP3
-            </button>
+            <button class="btn primary-btn" onclick="processDownload('mp4')">Download MP4</button>
+            <button class="btn secondary-btn" onclick="processDownload('mp3')">Audio MP3</button>
         </div>
-
         <div id="statusMessage" class="status-message"></div>
     </main>
 
-    <footer>
-        CREATED BY SWAP INC
-    </footer>
+    <footer>CREATED BY SWAP INC</footer>
 
-    <script src="script.js"></script>
+    <script>
+        async function processDownload(format) {
+            const statusElement = document.getElementById('statusMessage');
+            const url = document.getElementById('mediaUrl').value.trim();
+            if (!url) {
+                statusElement.innerText = "⚠️ Please paste a link.";
+                return;
+            }
+            statusElement.innerText = ⏳ Extracting ${format.toUpperCase()}...;
+            setTimeout(() => {
+                statusElement.style.color = "#00ff88";
+                statusElement.innerText = "✅ UI Loaded. Backend connection pending.";
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
